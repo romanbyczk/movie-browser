@@ -11,7 +11,7 @@
                     src="{{activeTrend.Poster}}" data-holder-rendered="true">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{activeTrend.Title}}</h5>
-                    <button class="btn btn-primary" [routerLink]="['/detailfilm', activeTrend.imdbID]">Szczegóły</button>
+                    <button class="btn btn-primary" [routerLink]="['/detail', activeTrend.imdbID]">Szczegóły</button>
                 </div>
             </div>
             <div class="carousel-item"  *ngFor="let film of trend" >
@@ -19,7 +19,7 @@
                     src="{{film.Poster}}" data-holder-rendered="true">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{film.Title}}</h5>
-                    <button class="btn btn-primary" [routerLink]="['/detailfilm', film.imdbID]">Szczegóły</button>
+                    <button class="btn btn-primary" [routerLink]="['/detail', film.imdbID]">Szczegóły</button>
                 </div>
             </div>
         </div>
@@ -32,11 +32,11 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="container">
+    <!-- <div class="container">
         <div class="row" style="padding:20px">
             <h1 style="margin:auto; padding:20px;">W kinach :</h1>
             <div class="row">
-                <div class="col-sm-4 poster" *ngFor="let film of nowplaying" [routerLink]="['/detailfilm', film.imdbID]">
+                <div class="col-sm-4 poster" *ngFor="let film of nowplaying" [routerLink]="['/detail', film.imdbID]">
                     <img src="{{film.Poster}}" class="img-fluid">
                     <div class="middle">
                         <h3>{{film.Title}}</h3>
@@ -44,5 +44,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+    <app-poster [postersData]="nowplaying"></app-poster>
 </div>

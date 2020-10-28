@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { OmdbService } from '../omdb.service';
 
 @Component({
@@ -8,34 +8,22 @@ import { OmdbService } from '../omdb.service';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  id: number;
-  film;
+  data;
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private omdbService: OmdbService
-  ) {
-    this.route.params.subscribe((params) => (this.id = params.id));
-  }
+  ) {}
   ngOnInit() {
-    if (this.router.url?.startsWith('/detailfilm')) this.getFilmById(this.id);
-    else if (this.router.url?.startsWith('/detailserie'))
-      this.getSeriesById(this.id);
+    this.route.params.subscribe((params) => this.getById(params.id));
   }
-  getFilmById(id) {
-    this.omdbService.getFilmById(id).then(
-      (data) => this.onSucces(data),
-      (err) => this.onError(err)
-    );
-  }
-  getSeriesById(id) {
-    this.omdbService.getSeriesById(id).then(
+  getById(id) {
+    this.omdbService.getById(id).then(
       (data) => this.onSucces(data),
       (err) => this.onError(err)
     );
   }
   onSucces(data) {
-    this.film = data;
+    this.data = data;
   }
   onError(err) {
     console.log(err);

@@ -2,14 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PosterComponent } from './poster.component';
 
-describe('PosterSeriesComponent', () => {
+describe('PosterComponent', () => {
   let component: PosterComponent;
   let fixture: ComponentFixture<PosterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PosterComponent],
-    }).compileComponents();
+      declarations: [ PosterComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {

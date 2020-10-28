@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row" style="margin-top:20px;">
         <div class="col-sm-6">
-            <img src="{{film.Poster}}" class="img-fluid detail">
+            <img src="{{data.Poster}}" class="img-fluid detail">
         </div>
         <div class="col-sm-6 my-auto">
-            <h1>{{film.Title}}</h1>
-            <span class="badge badge-genre" *ngFor="let genre of film.Genre?.split(',')">{{genre}}</span>
-            <p style="margin-top:20px;">{{film.Plot}}</p>
+            <h1>{{data.Title}}</h1>
+            <span class="badge badge-genre" *ngFor="let genre of data.Genre?.split(',')">{{genre}}</span>
+            <p style="margin-top:20px;">{{data.Plot}}</p>
         </div>
     </div>
 </div>

@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
-import { PosterComponent } from './poster/poster.component';
+import { WallComponent } from './wall/wall.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'films', component: PosterComponent },
-  { path: 'series', component: PosterComponent },
-  { path: 'detailfilm/:id', component: DetailComponent },
-  { path: 'detailserie/:id', component: DetailComponent },
-  { path: 'search/:find', component: SearchComponent },
+  { path: 'films', component: WallComponent },
+  { path: 'series', component: WallComponent },
+  { path: 'search/:find', component: WallComponent },
+  { path: 'detail/:id', component: DetailComponent },
 ];
 
 @NgModule({

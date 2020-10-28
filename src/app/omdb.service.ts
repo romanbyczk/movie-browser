@@ -14,18 +14,9 @@ export class OmdbService {
       )
       .toPromise();
   }
-  getSeriesById(id): Promise<any> {
+  getById(id): Promise<any> {
     return this.http
-      .get<any[]>(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&type=series&i=${id}`
-      )
-      .toPromise();
-  }
-  getFilmById(id): Promise<any> {
-    return this.http
-      .get<any[]>(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&type=movie&i=${id}`
-      )
+      .get<any[]>(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
       .toPromise();
   }
 }
