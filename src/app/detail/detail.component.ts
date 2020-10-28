@@ -18,18 +18,26 @@ export class DetailComponent implements OnInit {
     this.route.params.subscribe((params) => (this.id = params.id));
   }
   ngOnInit() {
-    if (this.router.url?.startsWith('/detailfilm')) this.getFilmByName(this.id);
+    if (this.router.url?.startsWith('/detailfilm')) this.getFilmById(this.id);
     else if (this.router.url?.startsWith('/detailserie'))
-      this.getSerieByName(this.id);
+      this.getSeriesById(this.id);
   }
-  getFilmByName(id) {
-    this.detailsService.getFilmByName(id).subscribe((data) => {
-      this.film = data;
-    });
+  getFilmById(id) {
+    this.detailsService.getFilmById(id).then(
+      (data) => this.onSucces(data),
+      (err) => this.onError(err)
+    );
   }
-  getSerieByName(id) {
-    this.detailsService.getSerieByName(id).subscribe((data) => {
-      this.film = data;
-    });
+  getSeriesById(id) {
+    this.detailsService.getSeriesById(id).then(
+      (data) => this.onSucces(data),
+      (err) => this.onError(err)
+    );
+  }
+  onSucces(data) {
+    this.film = data;
+  }
+  onError(err) {
+    console.log(err);
   }
 }

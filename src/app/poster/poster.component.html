@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row" style="padding:20px">
-        <div class="col-sm-4 poster" *ngFor="let element of data" [routerLink]="['/detailserie', element.id]">
+        <div class="col-sm-4 poster" *ngFor="let element of data" [routerLink]="['/detailserie', element.imdbID]">
             <img src="{{element.Poster}}" class="img-fluid">
             <div class="middle">
                 <h3>{{element.Title}}</h3>

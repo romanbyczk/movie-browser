@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailsService } from '../details.service';
-
+const MOVIE_TYPE = 'movie';
+const SERIES_TYPE = 'series';
 @Component({
   selector: 'app-poster',
   templateUrl: './poster.component.html',
@@ -19,24 +20,21 @@ export class PosterComponent implements OnInit {
     }
   }
   getSeries() {
-    this.data = this.detailsService.getSeries().subscribe((data) => {
-      this.data = data['results'];
-    });
-    this.detailsService.getSth().then(
-      (data) => {
-        console.log('yes');
-        console.log(data);
-        this.data = data.Search;
-      },
-      (err) => {
-        console.log('no');
-        console.log(err);
-      }
+    this.detailsService.search(SERIES_TYPE).then(
+      (data) => this.onSucces(data),
+      (err) => this.onError(err)
     );
   }
   getFilm() {
-    this.data = this.detailsService.getFilm().subscribe((data) => {
-      this.data = data['results'];
-    });
+    this.detailsService.search(MOVIE_TYPE).then(
+      (data) => this.onSucces(data),
+      (err) => this.onError(err)
+    );
+  }
+  onSucces(data) {
+    this.data = data.Search;
+  }
+  onError(err) {
+    console.log(err);
   }
 }

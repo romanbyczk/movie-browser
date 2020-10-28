@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TrendingService } from '../trending.service';
+import { DetailsService } from '../details.service';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +7,25 @@ import { TrendingService } from '../trending.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private trendService: TrendingService) {}
+  constructor(private detailsService: DetailsService) {}
   trend;
   nowplaying;
-  results;
+  activeTrend;
   ngOnInit() {
-    this.trend = this.trendService.getTrending().subscribe((data) => {
-      this.trend = data['results'];
-    });
-    this.nowplaying = this.trendService.getNowPlaying().subscribe((test) => {
-      this.nowplaying = test['results'];
-    });
+    this.getData();
+  }
+  getData() {
+    this.detailsService.search().then(
+      (data) => this.onSucces(data),
+      (err) => this.onError(err)
+    );
+  }
+  onSucces(data) {
+    this.nowplaying = data.Search;
+    this.activeTrend = this.nowplaying[0];
+    this.trend = this.nowplaying.slice(1, 3);
+  }
+  onError(err) {
+    console.log(err);
   }
 }

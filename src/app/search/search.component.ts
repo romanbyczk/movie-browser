@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SearchService } from '../search.service';
+import { Component, OnInit } from '@angular/core';
+import { DetailsService } from '../details.service';
 import { ActivatedRoute } from '@angular/router';
-import { find } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -9,24 +8,29 @@ import { find } from 'rxjs/operators';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  id;
-  results;
+  searchValue;
   data;
 
   constructor(
     private route: ActivatedRoute,
-    private searchService: SearchService
+    private detailsService: DetailsService
   ) {
-    this.route.params.subscribe((params) => (this.id = params.find));
+    this.route.params.subscribe((params) => (this.searchValue = params.find));
   }
   ngOnInit() {
-    this.getResult(this.id);
+    this.getData(this.searchValue);
   }
 
-  getResult(id) {
-    console.log(id);
-    this.searchService.getResult(id).subscribe((data) => {
-      this.results = data['results'];
-    });
+  getData(searchValue) {
+    this.detailsService.search(undefined, searchValue).then(
+      (data) => this.onSucces(data),
+      (err) => this.onError(err)
+    );
+  }
+  onSucces(data) {
+    this.data = data.Search;
+  }
+  onError(err) {
+    console.log(err);
   }
 }

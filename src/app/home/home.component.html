@@ -8,26 +8,18 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" data-src="" alt="First slide [800x400]"
-                    src="https://image.tmdb.org/t/p/original{{trend[0].backdrop_path}}" data-holder-rendered="true">
+                    src="{{activeTrend.Poster}}" data-holder-rendered="true">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>{{trend[0].original_title}}</h5>
-                    <button class="btn btn-primary" [routerLink]="['/detailfilm', trend[0].id]">Szczegóły</button>
+                    <h5>{{activeTrend.Title}}</h5>
+                    <button class="btn btn-primary" [routerLink]="['/detailfilm', activeTrend.imdbID]">Szczegóły</button>
                 </div>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item"  *ngFor="let film of trend" >
                 <img class="d-block w-100" data-src="" alt="First slide [800x400]"
-                    src="https://image.tmdb.org/t/p/original{{trend[1].backdrop_path}}" data-holder-rendered="true">
+                    src="{{film.Poster}}" data-holder-rendered="true">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>{{trend[1].original_title}}</h5>
-                    <button class="btn btn-primary" [routerLink]="['/detailfilm', trend[1].id]">Szczegóły</button>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" data-src="" alt="First slide [800x400]"
-                    src="https://image.tmdb.org/t/p/original{{trend[2].backdrop_path}}" data-holder-rendered="true">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>{{trend[2].original_title}}</h5>
-                    <button class="btn btn-primary" [routerLink]="['/detailfilm', trend[2].id]">Szczegóły</button>
+                    <h5>{{film.Title}}</h5>
+                    <button class="btn btn-primary" [routerLink]="['/detailfilm', film.imdbID]">Szczegóły</button>
                 </div>
             </div>
         </div>
@@ -44,11 +36,10 @@
         <div class="row" style="padding:20px">
             <h1 style="margin:auto; padding:20px;">W kinach :</h1>
             <div class="row">
-                <div class="col-sm-4 poster" *ngFor="let film of nowplaying" [routerLink]="['/detailfilm', film.id]">
-                    <img src="https://image.tmdb.org/t/p/w500{{film.poster_path}}" class="img-fluid">
+                <div class="col-sm-4 poster" *ngFor="let film of nowplaying" [routerLink]="['/detailfilm', film.imdbID]">
+                    <img src="{{film.Poster}}" class="img-fluid">
                     <div class="middle">
-                        <h3>{{film.title}}</h3>
-                        <h5>{{film.vote_average}}/10</h5>
+                        <h3>{{film.Title}}</h3>
                     </div>
                 </div>
             </div>
