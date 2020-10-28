@@ -9,7 +9,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
 import { WallComponent } from './wall/wall.component';
-import { PosterComponent } from './poster/poster.component';
+import { PostersComponent } from './posters/posters.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { PosterComponent } from './poster/poster.component';
     HomeComponent,
     DetailComponent,
     WallComponent,
-    PosterComponent,
+    PostersComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
   providers: [],
