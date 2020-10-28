@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap, catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 const API_KEY = '42dfb92c';
 @Injectable({
   providedIn: 'root',
 })
-export class DetailsService {
+export class OmdbService {
   constructor(private http: HttpClient) {}
   search(type?, searchValue = 'about'): Promise<any> {
     const typeURI = type ? `&type=${type}` : ``;

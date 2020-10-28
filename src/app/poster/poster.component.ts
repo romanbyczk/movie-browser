@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailsService } from '../details.service';
+import { OmdbService } from '../omdb.service';
 const MOVIE_TYPE = 'movie';
 const SERIES_TYPE = 'series';
 @Component({
@@ -9,7 +9,7 @@ const SERIES_TYPE = 'series';
   styleUrls: ['./poster.component.scss'],
 })
 export class PosterComponent implements OnInit {
-  constructor(private detailsService: DetailsService, private router: Router) {}
+  constructor(private omdbService: OmdbService, private router: Router) {}
   data;
   results;
   ngOnInit() {
@@ -20,13 +20,13 @@ export class PosterComponent implements OnInit {
     }
   }
   getSeries() {
-    this.detailsService.search(SERIES_TYPE).then(
+    this.omdbService.search(SERIES_TYPE).then(
       (data) => this.onSucces(data),
       (err) => this.onError(err)
     );
   }
   getFilm() {
-    this.detailsService.search(MOVIE_TYPE).then(
+    this.omdbService.search(MOVIE_TYPE).then(
       (data) => this.onSucces(data),
       (err) => this.onError(err)
     );

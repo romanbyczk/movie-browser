@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DetailsService } from '../details.service';
+import { OmdbService } from '../omdb.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,7 @@ import { DetailsService } from '../details.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private detailsService: DetailsService) {}
+  constructor(private omdbService: OmdbService) {}
   trend;
   nowplaying;
   activeTrend;
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
     this.getData();
   }
   getData() {
-    this.detailsService.search().then(
+    this.omdbService.search().then(
       (data) => this.onSucces(data),
       (err) => this.onError(err)
     );

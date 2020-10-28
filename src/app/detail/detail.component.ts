@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailsService } from '../details.service';
+import { OmdbService } from '../omdb.service';
 
 @Component({
   selector: 'app-detail',
@@ -13,7 +13,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private detailsService: DetailsService
+    private omdbService: OmdbService
   ) {
     this.route.params.subscribe((params) => (this.id = params.id));
   }
@@ -23,13 +23,13 @@ export class DetailComponent implements OnInit {
       this.getSeriesById(this.id);
   }
   getFilmById(id) {
-    this.detailsService.getFilmById(id).then(
+    this.omdbService.getFilmById(id).then(
       (data) => this.onSucces(data),
       (err) => this.onError(err)
     );
   }
   getSeriesById(id) {
-    this.detailsService.getSeriesById(id).then(
+    this.omdbService.getSeriesById(id).then(
       (data) => this.onSucces(data),
       (err) => this.onError(err)
     );

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DetailsService } from '../details.service';
+import { OmdbService } from '../omdb.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,10 +11,7 @@ export class SearchComponent implements OnInit {
   searchValue;
   data;
 
-  constructor(
-    private route: ActivatedRoute,
-    private detailsService: DetailsService
-  ) {
+  constructor(private route: ActivatedRoute, private omdbService: OmdbService) {
     this.route.params.subscribe((params) => (this.searchValue = params.find));
   }
   ngOnInit() {
@@ -22,7 +19,7 @@ export class SearchComponent implements OnInit {
   }
 
   getData(searchValue) {
-    this.detailsService.search(undefined, searchValue).then(
+    this.omdbService.search(undefined, searchValue).then(
       (data) => this.onSucces(data),
       (err) => this.onError(err)
     );
