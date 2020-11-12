@@ -10,13 +10,13 @@ export class OmdbService {
     const typeURI = type ? `&type=${type}` : ``;
     return this.http
       .get<any[]>(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}` + typeURI
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}` + typeURI
       )
       .toPromise();
   }
   getById(id): Promise<any> {
     return this.http
-      .get<any[]>(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
+      .get<any[]>(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
       .toPromise();
   }
 }
